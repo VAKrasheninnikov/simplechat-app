@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      <Joinblock onLogIn={onLogIn}/>
+      {state.isAuth ? <h1>МЫ В ЧАТЕЕЕ!!!</h1> : <Joinblock onLogIn={onLogIn}/>}
     </div>
   );
 }
