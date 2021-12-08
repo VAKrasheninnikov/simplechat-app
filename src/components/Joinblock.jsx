@@ -2,7 +2,7 @@ import React from 'react';
 import socket from '../socket';
 import axios from 'axios';
 
-function Joinblock() {
+function Joinblock({onLogIn}) {
   const [roomId, setRoomID] = React.useState('');
   const [userName, setUserName] = React.useState('');
 
@@ -21,6 +21,8 @@ function Joinblock() {
     axios.post('/rooms', {
       roomId,
       userName
+    }).then(()=>{
+      onLogIn();
     })
   }
 
