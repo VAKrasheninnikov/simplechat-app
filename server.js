@@ -31,7 +31,9 @@ app.post('/rooms', (req, res)=>{
 })
 
 io.on('connection', socket => {
-    console.log('user connected', socket.id)
+   socket.on('ROOM:JOIN', (data)=>{
+       console.log(data)
+   })
 })
 
 server.listen(9999, (err)=>{
