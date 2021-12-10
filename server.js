@@ -31,6 +31,10 @@ app.post('/rooms', (req, res)=>{
 })
 
 io.on('connection', socket => {
+    socket.on('ROOM:JOIN'), ({roomId, userName}) => {
+        socket.join(roomId)
+        rooms.get(roomId).get('users').socket(socket.id, userName)
+    }
     console.log('user connected', socket.id)
 })
 
