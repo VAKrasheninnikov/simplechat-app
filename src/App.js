@@ -3,25 +3,29 @@ import socket from './socket';
 import React from 'react'
 import { authentication } from './reducer';
 
+
 function App() {
 
   const initialState = ({
-    isAuth: false
+    joined: false,
+    roomId: null,
+    userName: null,
   })
 
   const [state, dispatch] = React.useReducer(authentication, initialState)
   console.log(state)
 
-  const onLogIn = () => {
+  const onLogIn = (obj) => {
     dispatch({
-      type: 'IS_AUTH',
-      payload: true,
+      type: 'JOINED',
+      payload: obj,
     })
+    socket.emit('ROOM:JOIN',obj);
   }
 
   return (
     <div className="wrapper">
-      {state.isAuth ? <h1>МЫ В ЧАТЕЕЕ!!!</h1> : <Joinblock onLogIn={onLogIn}/>}
+      {state.joined ? <h1>МЫ В ЧАТЕЕЕ!!!</h1> : <Joinblock onLogIn={onLogIn}/>}
     </div>
   );
 }

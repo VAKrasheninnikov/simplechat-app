@@ -20,12 +20,13 @@ function Joinblock({onLogIn}) {
       alert('Неверные данные')
     }
     else {
+      const obj = {
+        roomId, 
+        userName,
+      }
       setLoading(true);
-      await axios.post('/rooms', {
-        roomId,
-        userName
-      });
-      onLogIn();
+      await axios.post('/rooms', obj);
+      onLogIn(obj);
     }
   }
 
